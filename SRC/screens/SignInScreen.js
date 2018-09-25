@@ -89,7 +89,6 @@ class SignInScreen extends Component {
     } catch (err) {
       console.log(err);
     }
-   
   }
 
   render() {

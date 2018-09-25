@@ -19,16 +19,14 @@ class ProfileScreen extends Component {
         const userid = await AsyncStorage.getItem('user_id');
          
             try {
-              let { data } = await axios.post('https://chat.qualpros.com/api/login', {
-            
-                email: 'mailmeonparsana@gmail.com',
-                password: 'Swatinfo%7854@',
+              let { data } = await axios.post('https://chat.qualpros.com/api/get_student_profile', {
+                student_id: userid
               })
                 .then((response) => {
                   
                   if (response.data.data.status === 'success') {
-                      
-                    this.setState({ user: response.data.data.user_info })
+                
+                    this.setState({ user: response.data.data.student_info })
                    
                   } else {
                     console.log(response.data.data);
@@ -60,7 +58,7 @@ class ProfileScreen extends Component {
                         <Left>
                             
                             <Body>
-                                <Text>{this.state.user.username}</Text>
+                                <Text>{this.state.user.first_name} {this.state.user.last_name}</Text>
                                 <Text note>View and edit profile</Text>
                             </Body>
                         </Left>
